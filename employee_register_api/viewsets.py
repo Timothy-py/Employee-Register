@@ -7,3 +7,8 @@ class EmployeeViewset(viewsets.ModelViewSet):
     serializer_class = serializers.EmployeeSerializer
 
 
+class PositionViewset(viewsets.ModelViewSet):
+    queryset = models.Position.objects.all()
+    serializer_class = serializers.PositionSerializer
+
+

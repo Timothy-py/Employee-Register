@@ -1,8 +1,16 @@
 from rest_framework import serializers
-from .models import Employee
+from .models import Employee, Position
 
 
 class EmployeeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Employee
-        field = '__all__'
+        fields = '__all__'
+
+
+class PositionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Position
+        fields = '__all__'
+
+
