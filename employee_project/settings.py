@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
+import dj_database_url
 import environ
 env = environ.Env()
 environ.Env.read_env()
@@ -81,8 +82,6 @@ WSGI_APPLICATION = 'employee_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-import dj_database_url
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -94,17 +93,8 @@ DATABASES = {
     }
 }
 
-db_from_env = dj_database_url.config(conn_max_age=600)
+db_from_env = dj_database_url.config(conn_max_age=600, ssl_require=True)
 DATABASES['default'].update(db_from_env)
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': 'employeedb',
-#         'USER': 'timothy',
-#         'PASSWORD': 'plati442',
-#         'HOST': 'localhost'
-#     }
-# }
 
 
 # Password validation
@@ -147,6 +137,5 @@ STATIC_URL = '/static/'
 
 
 SECRET_KEY = env('SECRET_KEY')
-# EMAIL_HOST_USER = os.environ.get('')
-# EMAIL_HOST_PASSWORD = os.environ.get('')
+
 
